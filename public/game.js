@@ -79,6 +79,11 @@ export default function createGame() {
     function removeFruit(command) {
         const { fruitId } = command
         delete state.fruits[fruitId]
+
+        notifyAll({
+            type: 'remove-fruit',
+            fruitId
+        })
     }
 
     function movePlayer(command) {

@@ -10,7 +10,7 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <canvas id="screen" width="10" height="10"></canvas>
+    <canvas id="screen"></canvas>
 
     <script type="module">
         import createGame from './game.js'
@@ -54,8 +54,11 @@
         })
 
         socket.on('add-fruit', command => {
-            console.log('fruit added in client')
             game.addFruit(command)
+        })
+
+        socket.on('remove-fruit', command => {
+            game.removeFruit(command)
         })
     </script>
 </body>
