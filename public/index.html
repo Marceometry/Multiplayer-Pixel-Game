@@ -26,7 +26,7 @@
             const playerId = socket.id
         
             const screen = document.getElementById('screen')
-            renderScreen(screen, game, requestAnimationFrame)
+            renderScreen(screen, game, playerId, requestAnimationFrame)
         })
 
         socket.on('setup', state => {
@@ -35,6 +35,9 @@
 
             keyboardListener.registerPlayerId(playerId)
             keyboardListener.subscribe(game.movePlayer)
+            keyboardListener.subscribe(command => {
+                socket.emit(command.type, command)
+            })
         })
 
         socket.on('add-player', command => {
@@ -43,6 +46,16 @@
 
         socket.on('remove-player', command => {
             game.removePlayer(command)
+        })
+
+        socket.on('move-player', command => {
+            const playerId = socket.id
+            if (playerId !== command.playerId) { game.movePlayer(command) }
+        })
+
+        socket.on('add-fruit', command => {
+            console.log('fruit added in client')
+            game.addFruit(command)
         })
     </script>
 </body>
