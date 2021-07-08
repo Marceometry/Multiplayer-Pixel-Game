@@ -1,3 +1,5 @@
+import { mod } from './utils.js'
+
 export default function createGame() {
     const state = {
         screen: {
@@ -128,16 +130,16 @@ export default function createGame() {
 
         const acceptedMoves = {
             ArrowUp(player) {
-                player.y = Math.max(player.y - 1, 0)
+                player.y = mod(state.screen.height, player.y - 1)
             },
             ArrowDown(player) {
-                player.y = Math.min(player.y + 1, state.screen.height - 1)
+                player.y = mod(state.screen.height, player.y + 1)
             },
             ArrowLeft(player) {
-                player.x = Math.max(player.x - 1, 0)
+                player.x = mod(state.screen.width, player.x - 1)
             },
             ArrowRight(player) {
-                player.x = Math.min(player.x + 1, state.screen.width - 1)
+                player.x = mod(state.screen.width, player.x + 1)
             }
         }
 
