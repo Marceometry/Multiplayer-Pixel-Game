@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Multiplayer Game</title>
+    <title>Multiplayer Pixel Game</title>
 
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -32,6 +32,7 @@
                     <button id="start-button">Começar</button>
                     <button id="stop-button">Parar</button>
                     <button id="remove-all-fruits">Remover todas as frutas</button>
+                    <button id="remove-all-points">Remover todos os pontos dos jogadores</button>
                 </div>
             </div>
         </section>
@@ -87,6 +88,10 @@
 
         socket.on('remove-player', command => {
             game.removePlayer(command)
+        })
+        
+        socket.on('remove-all-points', command => {
+            game.removeAllPoints(command)
         })
 
         socket.on('move-player', command => {

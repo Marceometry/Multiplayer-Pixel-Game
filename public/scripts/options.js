@@ -32,4 +32,11 @@ export default function setUpOptionsFunctions(socket) {
             type: 'remove-all-fruits'
         })
     }
+
+    const removeAllPoints = document.getElementById("remove-all-points")
+    removeAllPoints.onclick = () => {
+        socket.emit('remove-all-points', {
+            type: 'remove-all-points'
+        })
+    }
 }

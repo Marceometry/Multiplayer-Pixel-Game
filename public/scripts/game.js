@@ -81,6 +81,15 @@ export default function createGame() {
         })
     }
 
+    function removeAllPoints(command) {
+        for (const playerId in state.players) {
+            const player = state.players[playerId]
+            player.points = 0
+        }
+
+        notifyAll(command)
+    }
+
     function addFruit(command) {
         const fruitId = command ? command.fruitId : Math.floor(Math.random() * 10000000)
         const fruitX = command ? command.fruitX : Math.floor(Math.random() * state.screen.width)
@@ -170,6 +179,7 @@ export default function createGame() {
         stop,
         addPlayer,
         removePlayer,
+        removeAllPoints,
         addFruit,
         removeFruit,
         removeAllFruits,
