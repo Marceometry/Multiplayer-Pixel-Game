@@ -31,6 +31,7 @@
                 <div class="buttons">
                     <button id="start-button">Começar</button>
                     <button id="stop-button">Parar</button>
+                    <button id="remove-all-fruits">Remover todas as frutas</button>
                 </div>
             </div>
         </section>
@@ -99,6 +100,10 @@
 
         socket.on('remove-fruit', command => {
             game.removeFruit(command)
+        })
+        
+        socket.on('remove-all-fruits', command => {
+            game.removeAllFruits(command)
         })
     </script>
 </body>

@@ -1,7 +1,5 @@
 export default function setUpOptionsFunctions(socket) {
     const startButton = document.getElementById("start-button")
-    const stopButton = document.getElementById("stop-button")
-
     startButton.onclick = () => {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber
         const fruitIntervalInput = document.getElementById("fruit-interval").valueAsNumber
@@ -23,7 +21,15 @@ export default function setUpOptionsFunctions(socket) {
         })
     }
 
+    const stopButton = document.getElementById("stop-button")
     stopButton.onclick = () => {
         socket.emit('game-stop', { type: 'game-stop' })
+    }
+
+    const removeAllFruits = document.getElementById("remove-all-fruits")
+    removeAllFruits.onclick = () => {
+        socket.emit('remove-all-fruits', {
+            type: 'remove-all-fruits'
+        })
     }
 }

@@ -103,10 +103,15 @@ export default function createGame() {
         const { fruitId } = command
         delete state.fruits[fruitId]
 
-        notifyAll({
-            type: 'remove-fruit',
-            fruitId
-        })
+        notifyAll(command)
+    }
+
+    function removeAllFruits(command) {
+        for (const fruitId in state.fruits) {
+            delete state.fruits[fruitId]
+        }
+
+        notifyAll(command)
     }
 
     function movePlayer(command) {
@@ -141,7 +146,7 @@ export default function createGame() {
             const fruit = state.fruits[fruitId]
 
             if (player.x === fruit.x && player.y === fruit.y) {
-                removeFruit({ fruitId })
+                removeFruit({ type: 'remove-fruit', fruitId })
                 player.points++
             }
         }
@@ -164,9 +169,10 @@ export default function createGame() {
         start,
         stop,
         addPlayer,
+        removePlayer,
         addFruit,
         removeFruit,
-        removePlayer,
+        removeAllFruits,
         movePlayer
     }
 }
