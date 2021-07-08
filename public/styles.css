@@ -33,11 +33,6 @@ button {
     transition: all .2s;
 }
 
-/* #options-container {
-    display: flex;
-    flex-direction: column;
-} */
-
 #options-container h2 {
     display: inline-block;
     font-size: 20px;
@@ -64,11 +59,6 @@ button {
     padding: 8px 0;
 }
 
-/* .chronometer-container {
-    display: flex;
-    align-items: center
-} */
-
 #ranking, #options-container {
     padding: 0 64px;
     color: white;
@@ -85,4 +75,5 @@ h1 {
 
 #ranking ol li.current-player {
     font-weight: 600;
+    color: #F0DB4F;
 }

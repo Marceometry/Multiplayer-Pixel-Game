@@ -1,8 +1,8 @@
 export default function createGame() {
     const state = {
         screen: {
-            width: 10,
-            height: 10
+            width: 25,
+            height: 25
         },
         players: {},
         fruits: {}
@@ -46,16 +46,6 @@ export default function createGame() {
         notifyAll({ type: 'game-stop' })
     }
 
-    function subscribe(observerFunction) {
-        observers.push(observerFunction)
-    }
-
-    function notifyAll(command) {
-        for (const observerFunction of observers) {
-            observerFunction(command)
-        }
-    }
-    
     function setState(newState) {
         Object.assign(state, newState)
     }
@@ -154,6 +144,16 @@ export default function createGame() {
                 removeFruit({ fruitId })
                 player.points++
             }
+        }
+    }
+
+    function subscribe(observerFunction) {
+        observers.push(observerFunction)
+    }
+
+    function notifyAll(command) {
+        for (const observerFunction of observers) {
+            observerFunction(command)
         }
     }
 
