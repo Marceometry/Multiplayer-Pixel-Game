@@ -22,6 +22,8 @@ export default function createGame() {
             console.log(observer)
         }
 
+        console.log(command)
+
         notifyAll(command)
     }
 

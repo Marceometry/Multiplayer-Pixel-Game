@@ -3,7 +3,7 @@ export function setUpOptionsFunctions(startButton, game) {
     //     game.start({ type: 'game-start', frequency: 1000 })
     // }
     startButton.onclick = () => {
-        game.stop()
+        game.start({ type: 'game-start', frequency: 1500 })
     }
 }
 
