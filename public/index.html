@@ -14,8 +14,18 @@
         <section id="options">
             <h1>Opções</h1>
 
+            <h2>Tempo restante: </h2>
+            <span id="chronometer">0</span>
+
             <div>
+                <label for="game-interval">Cronômetro do jogo (ms):</label>
+                <input type="number" name="game-interval" id="game-interval">
+
+                <label for="fruit-interval">Velocidade do spawn de frutas (ms):</label>
+                <input type="number" name="fruit-interval" id="fruit-interval">
+
                 <button id="start-button">Começar</button>
+                <button id="stop-button">Parar</button>
             </div>
         </section>
 
@@ -43,8 +53,7 @@
         
             const screen = document.getElementById('screen')
             setUpScreen(screen, game)
-            const startButton = document.getElementById("start-button")
-            setUpOptionsFunctions(startButton, game)
+            setUpOptionsFunctions(socket)
             renderScreen(screen, game, playerId, requestAnimationFrame)
         })
 
@@ -59,14 +68,9 @@
             })
         })
 
-        socket.on('game-start', command => {
-            console.log('game start - client')
-            game.start(command)
-        })
-
-        socket.on('game-stop', command => {
-            console.log('game stop - client')
-            game.stop()
+        socket.on('chronometer', command => {
+            const chronometer = document.getElementById('chronometer')
+            chronometer.innerText = `${command.totalIntervalValue}`
         })
 
         socket.on('add-player', command => {

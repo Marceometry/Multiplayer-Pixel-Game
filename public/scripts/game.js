@@ -9,27 +9,35 @@ export default function createGame() {
     }
 
     const observers = []
-    let interval
+    let fruitInterval
+    let gameInterval
+    let chronometer
 
     function start(command) {
-        const frequency = command.frequency
+        const { gameIntervalValue, fruitIntervalValue } = command
+        let totalIntervalValue = gameIntervalValue / 1000
 
-        interval = setInterval(addFruit, frequency)
+        gameInterval = setInterval(() => {
+            stop()
+        }, gameIntervalValue)
 
-        // console.log('game start')
-        for (let i = 0; i < observers.length; i++) {
-            const observer = observers[i];
-            console.log(observer)
-        }
+        notifyAll({ type: 'chronometer', totalIntervalValue })
+        chronometer = setInterval(() => {
+            totalIntervalValue --
+            if (totalIntervalValue >= 0) {
+                notifyAll({ type: 'chronometer', totalIntervalValue })
+            }
+        }, 1000)
 
-        console.log(command)
-
+        fruitInterval = setInterval(addFruit, fruitIntervalValue)
         notifyAll(command)
     }
 
     function stop() {
-        clearInterval(interval)
-        console.log('game stop')
+        clearInterval(chronometer)
+        clearInterval(gameInterval)
+        clearInterval(fruitInterval)
+        notifyAll({ type: 'chronometer', totalIntervalValue: 0 })
         notifyAll({ type: 'game-stop' })
     }
 

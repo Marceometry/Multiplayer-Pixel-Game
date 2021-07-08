@@ -9,11 +9,13 @@ const sockets = new Server(server)
 
 app.use(express.static('public'))
 
+server.listen(8000, () => {
+    console.log('> Server listening on port 8000')
+})
+
 const game = createGame()
 
-game.subscribe(command => {
-    command.type === 'game-start' && console.log('game start - server emit')
-    
+game.subscribe(command => {    
     sockets.emit(command.type, command)
 })
 
@@ -28,12 +30,10 @@ sockets.on('connection', socket => {
     })
 
     socket.on('game-start', command => {
-        console.log('game start - server')
         game.start(command)
     })
-
+    
     socket.on('game-stop', () => {
-        console.log('game stop - server')
         game.stop()
     })
 
@@ -43,8 +43,4 @@ sockets.on('connection', socket => {
         
         game.movePlayer(command)
     })
-})
-
-server.listen(8000, () => {
-    console.log('> Server listening on port 8000')
 })
