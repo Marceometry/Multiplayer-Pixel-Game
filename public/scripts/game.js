@@ -16,6 +16,11 @@ export default function createGame() {
         setInterval(addFruit, frequency)
     }
 
+    function stop() {
+        clearInterval()
+        console.log('stop')
+    }
+
     function subscribe(observerFunction) {
         observers.push(observerFunction)
     }
@@ -132,6 +137,7 @@ export default function createGame() {
         setState,
         subscribe,
         start,
+        stop,
         addPlayer,
         addFruit,
         removeFruit,
