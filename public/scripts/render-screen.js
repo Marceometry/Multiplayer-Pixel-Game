@@ -2,7 +2,9 @@ export function setUpOptionsFunctions(startButton, game) {
     // const start = () => {
     //     game.start({ type: 'game-start', frequency: 1000 })
     // }
-    // startButton.onclick = game.stop
+    startButton.onclick = () => {
+        game.stop()
+    }
 }
 
 export function setUpScreen(canvas, game) {

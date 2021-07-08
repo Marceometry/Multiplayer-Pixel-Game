@@ -10,7 +10,6 @@ const sockets = new Server(server)
 app.use(express.static('public'))
 
 const game = createGame()
-game.start({ frequency: 1500 })
 
 game.subscribe(command => {
     command.type === 'game-start' && console.log('game start - server emit')
@@ -28,14 +27,15 @@ sockets.on('connection', socket => {
         game.removePlayer({ playerId })
     })
 
-    // socket.on('game-start', command => {
-    //     console.log('game start - server')
-    //     game.start(command)
-    // })
+    socket.on('game-start', command => {
+        console.log('game start - server')
+        game.start(command)
+    })
 
-    // socket.on('game-stop', () => {
-    //     game.stop()
-    // })
+    socket.on('game-stop', () => {
+        console.log('game stop - server')
+        game.stop()
+    })
 
     socket.on('move-player', command => {
         command.playerId = playerId

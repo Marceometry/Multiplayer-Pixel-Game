@@ -34,6 +34,7 @@
         import renderScreen, { setUpScreen, setUpOptionsFunctions } from './scripts/render-screen.js'
 
         const game = createGame()
+        game.start({ type: 'game-start', frequency: 1500 })
         const keyboardListener = createKeyboardListener(document)
 
         const socket = io()
@@ -59,15 +60,15 @@
             })
         })
 
-        // socket.on('game-start', command => {
-        //     console.log('game start - client')
-        //     game.start(command)
-        // })
+        socket.on('game-start', command => {
+            console.log('game start - client')
+            game.start(command)
+        })
 
-        // socket.on('game-stop', command => {
-        //     console.log('game stop - client')
-        //     game.stop()
-        // })
+        socket.on('game-stop', command => {
+            console.log('game stop - client')
+            game.stop()
+        })
 
         socket.on('add-player', command => {
             game.addPlayer(command)

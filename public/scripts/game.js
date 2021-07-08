@@ -9,22 +9,26 @@ export default function createGame() {
     }
 
     const observers = []
-    let interval = null
+    let interval
 
     function start(command) {
         const frequency = command.frequency
 
         interval = setInterval(addFruit, frequency)
 
-        console.log('game start')
+        // console.log('game start')
+        for (let i = 0; i < observers.length; i++) {
+            const observer = observers[i];
+            console.log(observer)
+        }
 
-        // notifyAll(command)
+        notifyAll(command)
     }
 
     function stop() {
-        // clearInterval(interval)
-        // notifyAll({ type: 'game-stop' })
-        console.log('stop')
+        clearInterval(interval)
+        console.log('game stop')
+        notifyAll({ type: 'game-stop' })
     }
 
     function subscribe(observerFunction) {
