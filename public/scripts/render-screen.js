@@ -1,3 +1,10 @@
+export function setUpOptionsFunctions(startButton, game) {
+    const start = () => {
+        game.start({ type: 'game-start', frequency: 1000 })
+    }
+    startButton.onclick = start
+}
+
 export function setUpScreen(canvas, game) {
     const { width, height } = game.state.screen
     canvas.width = width

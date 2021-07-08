@@ -10,9 +10,10 @@ const sockets = new Server(server)
 app.use(express.static('public'))
 
 const game = createGame()
-game.start()
 
 game.subscribe(command => {
+    command.type === 'game-start' && console.log('game start - server emit')
+    
     sockets.emit(command.type, command)
 })
 
@@ -24,6 +25,15 @@ sockets.on('connection', socket => {
 
     socket.on('disconnect', () => {
         game.removePlayer({ playerId })
+    })
+
+    socket.on('game-start', command => {
+        console.log('game start - server')
+        game.start(command)
+    })
+
+    socket.on('stop-game', () => {
+        game.stop()
     })
 
     socket.on('move-player', command => {

@@ -27,12 +27,13 @@ body {
     transition: all .2s;
 }
 
-#ranking {
+#ranking, #options {
     padding: 0 64px;
     color: white;
 }
 
-#ranking h1 {
+#ranking h1,
+#options h1 {
     margin-bottom: 32px;
 }
 

@@ -11,19 +11,27 @@
 </head>
 <body>
     <div class="container">
+        <section id="options">
+            <h1>Opções</h1>
+
+            <div>
+                <button id="start-button">Começar</button>
+            </div>
+        </section>
+
         <canvas id="screen"></canvas>
     
-        <div id="ranking">
+        <section id="ranking">
             <h1>Ranking</h1>
     
             <ol></ol>
-        </div>
+        </section>
     </div>
 
     <script type="module">
         import createGame from './scripts/game.js'
         import createKeyboardListener from './scripts/keyboard-listener.js'
-        import renderScreen, { setUpScreen } from './scripts/render-screen.js'
+        import renderScreen, { setUpScreen, setUpOptionsFunctions } from './scripts/render-screen.js'
 
         const game = createGame()
         const keyboardListener = createKeyboardListener(document)
@@ -35,6 +43,8 @@
         
             const screen = document.getElementById('screen')
             setUpScreen(screen, game)
+            const startButton = document.getElementById("start-button")
+            setUpOptionsFunctions(startButton, game)
             renderScreen(screen, game, playerId, requestAnimationFrame)
         })
 
@@ -47,6 +57,11 @@
             keyboardListener.subscribe(command => {
                 socket.emit(command.type, command)
             })
+        })
+
+        socket.on('game-start', command => {
+            console.log('game start - client')
+            game.start(command)
         })
 
         socket.on('add-player', command => {
