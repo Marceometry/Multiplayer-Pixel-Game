@@ -11,21 +11,27 @@
 </head>
 <body>
     <div class="container">
-        <section id="options">
+        <section id="options-container">
             <h1>Opções</h1>
 
-            <h2>Tempo restante: </h2>
-            <span id="chronometer">0</span>
+            <div class="chronometer-container">
+                <h2>Tempo restante: </h2>
+                <h2 id="chronometer">0</h2>
+            </div>
 
-            <div>
-                <label for="game-interval">Cronômetro do jogo (ms):</label>
-                <input type="number" name="game-interval" id="game-interval">
+            <div class="options">
+                <div class="inputs">
+                    <label for="game-interval">Cronômetro do jogo (ms):</label>
+                    <input type="number" name="game-interval" id="game-interval">
+    
+                    <label for="fruit-interval">Velocidade do spawn de frutas (ms):</label>
+                    <input type="number" name="fruit-interval" id="fruit-interval">
+                </div>
 
-                <label for="fruit-interval">Velocidade do spawn de frutas (ms):</label>
-                <input type="number" name="fruit-interval" id="fruit-interval">
-
-                <button id="start-button">Começar</button>
-                <button id="stop-button">Parar</button>
+                <div class="buttons">
+                    <button id="start-button">Começar</button>
+                    <button id="stop-button">Parar</button>
+                </div>
             </div>
         </section>
 
