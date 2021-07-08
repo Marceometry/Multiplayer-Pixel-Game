@@ -10,12 +10,20 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <canvas id="screen"></canvas>
+    <div class="container">
+        <canvas id="screen"></canvas>
+    
+        <div id="ranking">
+            <h1>Ranking</h1>
+    
+            <ol></ol>
+        </div>
+    </div>
 
     <script type="module">
         import createGame from './game.js'
         import createKeyboardListener from './keyboard-listener.js'
-        import renderScreen from './render-screen.js'
+        import renderScreen, { setUpScreen } from './render-screen.js'
 
         const game = createGame()
         const keyboardListener = createKeyboardListener(document)
@@ -26,6 +34,7 @@
             const playerId = socket.id
         
             const screen = document.getElementById('screen')
+            setUpScreen(screen, game)
             renderScreen(screen, game, playerId, requestAnimationFrame)
         })
 

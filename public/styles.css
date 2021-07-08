@@ -7,17 +7,39 @@
 body {
     height: 100vh;
     background: #444;
+    font: 16px sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.container {
+    display: flex;
+}
+
 #screen {
-    width: 500px;
-    height: 500px;
+    width: 70vh;
+    height: 70vh;
     border: 10px solid #999;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     image-rendering: -moz-crisp-edges;
     transition: all .2s;
+}
+
+#ranking {
+    padding: 0 64px;
+    color: white;
+}
+
+#ranking h1 {
+    margin-bottom: 32px;
+}
+
+#ranking ol li {
+    margin-top: 16px;
+}
+
+#ranking ol li.current-player {
+    font-weight: 600;
 }
