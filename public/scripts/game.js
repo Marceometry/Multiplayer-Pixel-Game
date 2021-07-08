@@ -16,6 +16,12 @@ export default function createGame() {
     function start(command) {
         const { gameIntervalValue, fruitIntervalValue } = command
         let totalIntervalValue = gameIntervalValue / 1000
+        
+        clearInterval(chronometer)
+        clearInterval(gameInterval)
+        clearInterval(fruitInterval)
+        
+        fruitInterval = setInterval(addFruit, fruitIntervalValue)
 
         gameInterval = setInterval(() => {
             stop()
@@ -29,7 +35,6 @@ export default function createGame() {
             }
         }, 1000)
 
-        fruitInterval = setInterval(addFruit, fruitIntervalValue)
         notifyAll(command)
     }
 
