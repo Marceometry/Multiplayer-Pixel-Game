@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/asides.css">
+    <link rel="stylesheet" href="./css/canvas.css">
+
     <title>Multiplayer Pixel Game</title>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -17,7 +22,7 @@
     </header>
 
     <div class="container">
-        <section id="options-container">
+        <aside id="options-container">
             <h1>Opções</h1>
 
             <div class="chronometer-container">
@@ -41,15 +46,15 @@
                     <button id="remove-all-points">Remover todos os pontos dos jogadores</button>
                 </div>
             </div>
-        </section>
+        </aside>
 
         <canvas id="screen"></canvas>
     
-        <section id="ranking">
+        <aside id="ranking">
             <h1>Ranking</h1>
     
             <ol></ol>
-        </section>
+        </aside>
     </div>
 
     <script type="module">

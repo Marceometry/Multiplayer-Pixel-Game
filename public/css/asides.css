@@ -1,0 +1,35 @@
+#ranking, #options-container {
+    padding: 0 64px;
+}
+
+#options-container h2 {
+    display: inline-block;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.options {
+    margin-top: 32px;
+    gap: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.options div {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+#ranking ol li {
+    margin-top: 16px;
+}
+
+#ranking ol li.current-player {
+    font-weight: 600;
+    color: #F0DB4F;
+}

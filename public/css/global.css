@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: #444;
+    color: white;
+    font: 16px sans-serif;
+    
+    gap: 64px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button {
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+input {
+    padding: 4px;
+}
+
+.container {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+}
