@@ -29,11 +29,32 @@
 
     <div class="container">
         <aside id="options-container">
-            <h1>Informações:</h1>
+            <h1>Opções</h1>
 
             <div class="chronometer-container">
                 <h2>Tempo restante: </h2>
                 <h2 id="chronometer">0</h2>
+            </div>
+
+            <div class="options">
+                <div class="inputs">
+                    <label for="game-interval">Cronômetro do jogo (ms):</label>
+                    <input type="number" name="game-interval" id="game-interval">
+    
+                    <label for="fruit-interval">Velocidade do spawn de frutas (ms):</label>
+                    <input type="number" name="fruit-interval" id="fruit-interval">
+    
+                    <label for="bomb-interval">Velocidade do spawn de bombas (ms):</label>
+                    <input type="number" name="bomb-interval" id="bomb-interval">
+                </div>
+
+                <div class="buttons">
+                    <button id="start-button">Começar</button>
+                    <button id="stop-button">Parar</button>
+                    <button id="remove-all-fruits">Remover todas as frutas</button>
+                    <button id="remove-all-bombs">Remover todas as bombas</button>
+                    <button id="remove-all-points">Remover todos os pontos dos jogadores</button>
+                </div>
             </div>
         </aside>
 
@@ -50,7 +71,7 @@
         import createGame from './scripts/game.js'
         import createKeyboardListener from './scripts/keyboard-listener.js'
         import renderScreen, { setUpScreen } from './scripts/render-screen.js'
-        import { playerOptions } from './scripts/options.js'
+        import { playerOptions, adminOptions } from './scripts/options.js'
 
         const game = createGame()
         const keyboardListener = createKeyboardListener(document)
@@ -63,6 +84,7 @@
             const screen = document.getElementById('screen')
             setUpScreen(screen, game)
             playerOptions(socket)
+            adminOptions(socket)
             renderScreen(screen, game, playerId, requestAnimationFrame)
         })
 

@@ -43,5 +43,5 @@ button, input {
 .container {
     width: 100vw;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
 }

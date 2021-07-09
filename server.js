@@ -9,13 +9,20 @@ const sockets = new Server(server)
 
 app.use(express.static('public'))
 
+app.get('/admin-options', function (req, res) {
+    res.sendFile(`${process.cwd()}/public/game-admin.html`)
+})
+
 server.listen(8000, () => {
     console.log('> Server listening on port 8000 (http://localhost:8000)')
 })
 
+
+// game //
+
 const game = createGame()
 
-game.subscribe(command => {    
+game.subscribe(command => {
     sockets.emit(command.type, command)
 })
 
@@ -32,7 +39,7 @@ sockets.on('connection', socket => {
     socket.on('game-start', command => {
         game.start(command)
     })
-    
+
     socket.on('game-stop', () => {
         game.stop()
     })
@@ -40,7 +47,7 @@ sockets.on('connection', socket => {
     socket.on('move-player', command => {
         command.playerId = playerId
         command.type = 'move-player'
-        
+
         game.movePlayer(command)
     })
 

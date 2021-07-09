@@ -25,6 +25,10 @@ h1 {
     flex-direction: column;
 }
 
+#ranking {
+    min-width: 440px;
+}
+
 #ranking ol li {
     margin-top: 16px;
 }

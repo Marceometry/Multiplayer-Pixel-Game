@@ -1,6 +1,6 @@
 import { colorOptions } from './utils.js'
 
-export default function setUpOptionsFunctions(socket) {
+export function playerOptions(socket) {
     const changeUsername = document.getElementById("change-username")
     changeUsername.onclick = () => {
         const username = document.getElementById("username").value
@@ -34,7 +34,9 @@ export default function setUpOptionsFunctions(socket) {
             })
         }
     }
+}
 
+export function adminOptions(socket) {
     const startButton = document.getElementById("start-button")
     startButton.onclick = () => {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber
