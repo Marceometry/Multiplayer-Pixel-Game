@@ -84,7 +84,7 @@ export default function createGame() {
             y: playerY,
             points,
             username,
-            color: '#F0DB4F'
+            color: '#cccccc'
         }
 
         notifyAll({

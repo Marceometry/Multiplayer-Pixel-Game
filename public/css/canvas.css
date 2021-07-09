@@ -1,6 +1,7 @@
 #screen {
     width: 70vh;
     height: 70vh;
+    border-radius: 5px;
     border: 10px solid #999;
     image-rendering: pixelated;
     image-rendering: crisp-edges;

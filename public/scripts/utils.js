@@ -16,5 +16,6 @@ export const colorOptions = [
     '#674ff0',
     '#ca4ff0',
     '#f04fe3',
-    '#f04f9f'
+    '#f04f9f',
+    '#cccccc'
 ]
