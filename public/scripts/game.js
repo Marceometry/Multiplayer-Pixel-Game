@@ -52,8 +52,16 @@ export default function createGame() {
         Object.assign(state, newState)
     }
 
+    function changeUsername(command) {
+        const { playerId, username } = command
+        state.players[playerId].username = username
+
+        notifyAll(command)
+    }
+
     function addPlayer(command) {
         const { playerId } = command
+        const username = playerId
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
         const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random() * state.screen.height)
         const points = 'points' in command ? command.points : 0
@@ -61,7 +69,8 @@ export default function createGame() {
         state.players[playerId] = {
             x: playerX,
             y: playerY,
-            points
+            points,
+            username
         }
 
         notifyAll({
@@ -69,7 +78,8 @@ export default function createGame() {
             playerId,
             playerX,
             playerY,
-            points
+            points,
+            username
         })
     }
 
@@ -179,6 +189,7 @@ export default function createGame() {
         subscribe,
         start,
         stop,
+        changeUsername,
         addPlayer,
         removePlayer,
         removeAllPoints,

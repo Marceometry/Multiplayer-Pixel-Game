@@ -39,13 +39,14 @@ function renderRanking(game, currentPlayerId) {
     const playersArray = []
 
     for (const playerId in game.state.players) {
-        const { x, y, points } = game.state.players[playerId]
+        const { x, y, points, username } = game.state.players[playerId]
 
         playersArray.push({
             playerId,
             x,
             y,
             points,
+            username
         })
     }
     
@@ -63,7 +64,7 @@ function renderRanking(game, currentPlayerId) {
 
         ol.innerHTML += `
             <li class=${player.playerId === currentPlayerId ? 'current-player' : ''}>
-                ${player.playerId} ${player.playerId === currentPlayerId ? '(Você)' : ''} | ${player.points} ponto(s)
+                ${player.username} ${player.playerId === currentPlayerId ? '(Você)' : ''} - ${player.points} ponto(s)
             </li>
         `
     }

@@ -44,6 +44,13 @@ sockets.on('connection', socket => {
         game.movePlayer(command)
     })
 
+    socket.on('change-username', command => {
+        command.playerId = playerId
+        command.type = 'change-username'
+
+        game.changeUsername(command)
+    })
+
     socket.on('remove-all-fruits', command => {
         game.removeAllFruits(command)
     })

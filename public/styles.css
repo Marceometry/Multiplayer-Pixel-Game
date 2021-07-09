@@ -7,14 +7,37 @@
 body {
     height: 100vh;
     background: #444;
+    color: white;
     font: 16px sans-serif;
+    gap: 64px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    flex-direction: column;
 }
 
 button {
+    padding: 8px 0;
     cursor: pointer;
+}
+
+input {
+    padding: 4px;
+}
+
+header {
+    margin-left: 64px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+header label {
+    font-size: 24px;
+}
+
+header button {
+    padding: 4px;
 }
 
 .container {
@@ -51,17 +74,8 @@ button {
     flex-direction: column;
 }
 
-.inputs input {
-    padding: 4px;
-}
-
-.buttons button {
-    padding: 8px 0;
-}
-
 #ranking, #options-container {
     padding: 0 64px;
-    color: white;
 }
 
 h1 {

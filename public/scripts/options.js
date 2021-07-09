@@ -1,4 +1,20 @@
 export default function setUpOptionsFunctions(socket) {
+    const changeUsername = document.getElementById("change-username")
+    changeUsername.onclick = () => {
+        const username = document.getElementById("username").value
+
+        if (username.length > 20 || username.length < 3) {
+            alert('Nome inválido')
+            return
+        }
+
+        socket.emit('change-username', {
+            type: 'change-username',
+            playerId: socket.id,
+            username
+        })
+    }
+
     const startButton = document.getElementById("start-button")
     startButton.onclick = () => {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber
