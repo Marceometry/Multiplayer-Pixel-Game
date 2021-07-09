@@ -16,6 +16,15 @@ export default function createGame() {
     let bombInterval
     let gameInterval
     let chronometer
+    
+    function startCountdown(command) {
+        notifyAll(command)
+
+        const countdownInterval = setInterval(() => {
+            start(command)
+            clearInterval(countdownInterval)
+        }, command.countdown)
+    }
 
     function start(command) {
         const { gameIntervalValue, fruitIntervalValue, bombIntervalValue } = command
@@ -247,6 +256,7 @@ export default function createGame() {
         state,
         setState,
         subscribe,
+        startCountdown,
         start,
         stop,
         changeUsername,

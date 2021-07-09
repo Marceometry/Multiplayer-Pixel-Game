@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/asides.css">
     <link rel="stylesheet" href="./css/canvas.css">
 
-    <title>Multiplayer Pixel Game</title>
+    <title>Multiplayer Pixel Game | Admin</title>
 
     <script src="/socket.io/socket.io.js"></script>
 </head>
@@ -34,6 +34,7 @@
             <div class="chronometer-container">
                 <h2>Tempo restante: </h2>
                 <h2 id="chronometer">0</h2>
+                <h2 id="countdown" style="display: none">0</h2>
             </div>
 
             <div class="options">
@@ -97,6 +98,23 @@
             keyboardListener.subscribe(command => {
                 socket.emit(command.type, command)
             })
+        })
+
+        socket.on('start-countdown', command => {
+            const countdown = document.getElementById('countdown')
+            let countdownValue = command.countdown
+            
+            countdown.innerText = `${countdownValue / 1000}`
+            
+            const startCountingDown = setInterval(() => {
+                countdownValue -= 1000
+                countdown.innerText = `${countdownValue / 1000}`
+            }, 1000)
+
+            const countdownInterval = setInterval(() => {
+                clearInterval(startCountingDown)
+                clearInterval(countdownInterval)
+            }, command.countdown)
         })
 
         socket.on('chronometer', command => {

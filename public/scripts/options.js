@@ -56,9 +56,12 @@ export function adminOptions(socket) {
         bombIntervalInput >= 500 && (
             bombIntervalValue = bombIntervalInput
         )
-        
-        socket.emit('game-start', {
-            type: 'game-start',
+
+        const countdown = 3000
+
+        socket.emit('start-countdown', {
+            type: 'start-countdown',
+            countdown,
             fruitIntervalValue,
             gameIntervalValue,
             bombIntervalValue

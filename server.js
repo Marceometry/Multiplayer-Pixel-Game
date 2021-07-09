@@ -36,6 +36,10 @@ sockets.on('connection', socket => {
         game.removePlayer({ playerId })
     })
 
+    socket.on('start-countdown', command => {
+        game.startCountdown(command)
+    })
+
     socket.on('game-start', command => {
         game.start(command)
     })
