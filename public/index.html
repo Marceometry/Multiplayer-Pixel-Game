@@ -43,12 +43,16 @@
     
                     <label for="fruit-interval">Velocidade do spawn de frutas (ms):</label>
                     <input type="number" name="fruit-interval" id="fruit-interval">
+    
+                    <label for="bomb-interval">Velocidade do spawn de bombas (ms):</label>
+                    <input type="number" name="bomb-interval" id="bomb-interval">
                 </div>
 
                 <div class="buttons">
                     <button id="start-button">Começar</button>
                     <button id="stop-button">Parar</button>
                     <button id="remove-all-fruits">Remover todas as frutas</button>
+                    <button id="remove-all-bombs">Remover todas as bombas</button>
                     <button id="remove-all-points">Remover todos os pontos dos jogadores</button>
                 </div>
             </div>
@@ -134,6 +138,18 @@
         
         socket.on('remove-all-fruits', command => {
             game.removeAllFruits(command)
+        })
+    
+        socket.on('add-bomb', command => {
+            game.addBomb(command)
+        })
+
+        socket.on('remove-bomb', command => {
+            game.removeBomb(command)
+        })
+        
+        socket.on('remove-all-bombs', command => {
+            game.removeAllBombs(command)
         })
     </script>
 </body>

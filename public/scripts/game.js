@@ -7,16 +7,18 @@ export default function createGame() {
             height: 25
         },
         players: {},
-        fruits: {}
+        fruits: {},
+        bombs: {},
     }
 
     const observers = []
     let fruitInterval
+    let bombInterval
     let gameInterval
     let chronometer
 
     function start(command) {
-        const { gameIntervalValue, fruitIntervalValue } = command
+        const { gameIntervalValue, fruitIntervalValue, bombIntervalValue } = command
         let totalIntervalValue = gameIntervalValue / 1000
         
         clearInterval(chronometer)
@@ -24,6 +26,9 @@ export default function createGame() {
         clearInterval(fruitInterval)
         
         fruitInterval = setInterval(addFruit, fruitIntervalValue)
+        if (bombIntervalValue) {
+            bombInterval = setInterval(addBomb, bombIntervalValue)
+        }
 
         gameInterval = setInterval(() => {
             stop()
@@ -44,6 +49,7 @@ export default function createGame() {
         clearInterval(chronometer)
         clearInterval(gameInterval)
         clearInterval(fruitInterval)
+        clearInterval(bombInterval)
         notifyAll({ type: 'chronometer', totalIntervalValue: 0 })
         notifyAll({ type: 'game-stop' })
     }
@@ -143,6 +149,39 @@ export default function createGame() {
         notifyAll(command)
     }
 
+    function addBomb(command) {
+        const bombId = command ? command.bombId : Math.floor(Math.random() * 10000000)
+        const bombX = command ? command.bombX : Math.floor(Math.random() * state.screen.width)
+        const bombY = command ? command.bombY : Math.floor(Math.random() * state.screen.height)
+
+        state.bombs[bombId] = {
+            x: bombX,
+            y: bombY
+        }
+
+        notifyAll({
+            type: 'add-bomb',
+            bombId,
+            bombX,
+            bombY
+        })
+    }
+
+    function removeBomb(command) {
+        const { bombId } = command
+        delete state.bombs[bombId]
+
+        notifyAll(command)
+    }
+
+    function removeAllBombs(command) {
+        for (const bombId in state.bombs) {
+            delete state.bombs[bombId]
+        }
+
+        notifyAll(command)
+    }
+
     function movePlayer(command) {
         notifyAll(command)
 
@@ -167,6 +206,8 @@ export default function createGame() {
         if (player && moveFunction) {
             moveFunction(player)
             checkForFruitCollision(player)
+
+            Object.keys(state.bombs).length > 0 && checkForBombCollision(player)
         }
     }
 
@@ -177,6 +218,17 @@ export default function createGame() {
             if (player.x === fruit.x && player.y === fruit.y) {
                 removeFruit({ type: 'remove-fruit', fruitId })
                 player.points++
+            }
+        }
+    }
+
+    function checkForBombCollision(player) {
+        for (const bombId in state.bombs) {
+            const bomb = state.bombs[bombId]
+
+            if (player.x === bomb.x && player.y === bomb.y) {
+                removeBomb({ type: 'remove-bomb', bombId })
+                player.points--
             }
         }
     }
@@ -205,6 +257,9 @@ export default function createGame() {
         addFruit,
         removeFruit,
         removeAllFruits,
+        addBomb,
+        removeBomb,
+        removeAllBombs,
         movePlayer
     }
 }

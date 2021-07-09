@@ -20,6 +20,12 @@ export default function renderScreen(screen, game, currentPlayerId, requestAnima
         context.fillStyle = 'green'
         context.fillRect(fruit.x, fruit.y, 1, 1)
     }
+    
+    for (const bombId in game.state.bombs) {
+        const bomb = game.state.bombs[bombId]
+        context.fillStyle = 'red'
+        context.fillRect(bomb.x, bomb.y, 1, 1)
+    }
 
     const currentPlayer = game.state.players[currentPlayerId]
 

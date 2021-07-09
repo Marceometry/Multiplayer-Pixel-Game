@@ -39,9 +39,11 @@ export default function setUpOptionsFunctions(socket) {
     startButton.onclick = () => {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber
         const fruitIntervalInput = document.getElementById("fruit-interval").valueAsNumber
+        const bombIntervalInput = document.getElementById("bomb-interval").valueAsNumber
 
         let gameIntervalValue = 30000
         let fruitIntervalValue = 1500
+        let bombIntervalValue = 0
 
         !isNaN(gameIntervalInput) && gameIntervalInput > 0 && (
             gameIntervalValue = gameIntervalInput
@@ -49,11 +51,15 @@ export default function setUpOptionsFunctions(socket) {
         !isNaN(fruitIntervalInput) && fruitIntervalInput > 0 && (
             fruitIntervalValue = fruitIntervalInput
         )
+        bombIntervalInput >= 500 && (
+            bombIntervalValue = bombIntervalInput
+        )
         
         socket.emit('game-start', {
             type: 'game-start',
             fruitIntervalValue,
-            gameIntervalValue
+            gameIntervalValue,
+            bombIntervalValue
         })
     }
 
@@ -66,6 +72,13 @@ export default function setUpOptionsFunctions(socket) {
     removeAllFruits.onclick = () => {
         socket.emit('remove-all-fruits', {
             type: 'remove-all-fruits'
+        })
+    }
+
+    const removeAllBombs = document.getElementById("remove-all-bombs")
+    removeAllBombs.onclick = () => {
+        socket.emit('remove-all-bombs', {
+            type: 'remove-all-bombs'
         })
     }
 

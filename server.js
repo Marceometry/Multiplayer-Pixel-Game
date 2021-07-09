@@ -62,6 +62,10 @@ sockets.on('connection', socket => {
         game.removeAllFruits(command)
     })
 
+    socket.on('remove-all-bombs', command => {
+        game.removeAllBombs(command)
+    })
+
     socket.on('remove-all-points', command => {
         game.removeAllPoints(command)
     })
