@@ -7,17 +7,24 @@ aside h1 {
     margin-bottom: 40px;
 }
 
-#left-container {
+.left-container {
     min-width: 330px;
 }
 
-.chronometer-container {
-    display: flex;
-    gap: 8px;
+.left-container.hidden {
+    display: none;
 }
 
-.chronometer-container h1 {
-    display: inline-block;
+.stats + .stats {
+    margin-top: 28px;
+}
+
+.stats h2 {
+    margin-bottom: 16px;
+}
+
+.stats section + section {
+    margin-top: 8px;
 }
 
 .options {

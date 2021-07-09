@@ -28,10 +28,29 @@
     </header>
 
     <div class="container">
-        <aside id="left-container">
-            <div class="chronometer-container">
-                <h1>Tempo restante: </h1>
-                <h1 id="chronometer">0</h1>
+        <aside class="left-container">
+            <h1>Tempo restante: <span id="chronometer">0</span></h1>
+
+            <div class="stats">
+                <h2>Nesta partida:</h2>
+                <section>
+                    <p>Frutas ingeridas: <span id="fruits-consumed">0</span></p>
+                    <p>Frutas que você ingeriu: <span id="fruits-player-consumed"">0</span></p>
+                </section>
+                <section>
+                    <p>Bombas explodidas: <span id="bombs-exploded">0</span></p>
+                    <p>Bombas que você explodiu: <span id="bombs-player-exploded">0</span></p>
+                </section>
+            </div>
+            
+            <div class="stats">
+                <h2>Total:</h2>
+                <section>
+                    <p>Total de frutas que você ingeriu: <span id="total-fruits-consumed"">0</span></p>
+                </section>
+                <section>
+                    <p>Total de bombas que você explodiu: <span id="total-bombs-exploded">0</span></p>
+                </section>
             </div>
         </aside>
 
@@ -50,8 +69,12 @@
     <script type="module">
         import createGame from './scripts/game.js'
         import createKeyboardListener from './scripts/keyboard-listener.js'
-        import renderScreen, { setUpScreen, renderCountdown } from './scripts/render-screen.js'
         import { playerOptions } from './scripts/options.js'
+        import renderScreen, {
+            setUpScreen,
+            renderCountdown,
+            renderGameStats
+        } from './scripts/render-screen.js'
 
         const game = createGame()
         const keyboardListener = createKeyboardListener(document)
@@ -70,6 +93,7 @@
         socket.on('setup', state => {
             const playerId = socket.id
             game.setState(state)
+            renderGameStats(game, playerId)
 
             keyboardListener.registerPlayerId(playerId)
             keyboardListener.subscribe(game.movePlayer)
@@ -80,6 +104,18 @@
 
         socket.on('start-countdown', command => {
             renderCountdown(command.countdown)
+
+            for (const playerId in game.state.players) {
+                const player = game.state.players[playerId]
+                
+                player.fruitsConsumedInThisGame = 0
+                player.bombsExplodedInThisGame = 0
+            }
+            game.state.fruitsConsumedInThisGame = 0
+            game.state.bombsExplodedInThisGame = 0
+            
+            const playerId = socket.id
+            renderGameStats(game, playerId)
         })
 
         socket.on('chronometer', command => {
@@ -118,6 +154,8 @@
 
         socket.on('remove-fruit', command => {
             game.removeFruit(command)
+            const playerId = socket.id
+            renderGameStats(game, playerId)
         })
         
         socket.on('remove-all-fruits', command => {
@@ -130,6 +168,8 @@
 
         socket.on('remove-bomb', command => {
             game.removeBomb(command)
+            const playerId = socket.id
+            renderGameStats(game, playerId)
         })
         
         socket.on('remove-all-bombs', command => {

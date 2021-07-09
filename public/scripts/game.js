@@ -8,7 +8,9 @@ export default function createGame() {
         },
         players: {},
         fruits: {},
+        fruitsConsumedInThisGame: 0,
         bombs: {},
+        bombsExplodedInThisGame: 0,
     }
 
     const observers = []
@@ -18,6 +20,14 @@ export default function createGame() {
     let chronometer
     
     function startCountdown(command) {
+        for (const playerId in state.players) {
+            const player = state.players[playerId]
+            player.fruitsConsumedInThisGame = 0
+            player.bombsExplodedInThisGame = 0
+        }
+        state.fruitsConsumedInThisGame = 0
+        state.bombsExplodedInThisGame = 0
+        
         notifyAll(command)
         command.type = 'game-start'
 
@@ -97,7 +107,11 @@ export default function createGame() {
             y: playerY,
             points,
             username,
-            color: '#cccccc'
+            color: '#cccccc',
+            totalFruitsConsumed: 0,
+            fruitsConsumedInThisGame: 0,
+            totalBombsExploded: 0,
+            bombsExplodedInThisGame: 0
         }
 
         notifyAll({
@@ -230,6 +244,9 @@ export default function createGame() {
 
             if (player.x === fruit.x && player.y === fruit.y) {
                 removeFruit({ type: 'remove-fruit', fruitId })
+                state.fruitsConsumedInThisGame ++
+                player.totalFruitsConsumed++
+                player.fruitsConsumedInThisGame++
                 player.points++
             }
         }
@@ -241,6 +258,9 @@ export default function createGame() {
 
             if (player.x === bomb.x && player.y === bomb.y) {
                 removeBomb({ type: 'remove-bomb', bombId })
+                state.bombsExplodedInThisGame ++
+                player.totalBombsExploded++
+                player.bombsExplodedInThisGame++
                 player.points--
             }
         }

@@ -4,15 +4,39 @@ export function setUpScreen(canvas, game) {
     canvas.height = height
 }
 
+export function renderGameStats(game, playerId) {
+    const {
+        players,
+        fruitsConsumedInThisGame,
+        bombsExplodedInThisGame
+    } = game.state
+
+    const fruitsConsumed = document.getElementById('fruits-consumed')
+    const fruitsPlayerConsumed = document.getElementById('fruits-player-consumed')
+    const TotalFruitsPlayerConsumed = document.getElementById('total-fruits-consumed')
+
+    fruitsConsumed.innerText = fruitsConsumedInThisGame
+    fruitsPlayerConsumed.innerText = players[playerId].fruitsConsumedInThisGame
+    TotalFruitsPlayerConsumed.innerText = players[playerId].totalFruitsConsumed
+
+    const bombsExploded = document.getElementById('bombs-exploded')
+    const bombsPlayerExploded = document.getElementById('bombs-player-exploded')
+    const TotalBombsPlayerExploded = document.getElementById('total-bombs-exploded')
+
+    bombsExploded.innerText = bombsExplodedInThisGame
+    bombsPlayerExploded.innerText = players[playerId].bombsExplodedInThisGame
+    TotalBombsPlayerExploded.innerText = players[playerId].totalBombsExploded
+}
+
 export function renderCountdown(countdownValue) {
     const countdownContainer = document.getElementById("countdown-container")
     countdownContainer.classList.add("is-opened")
 
     const countdown = document.getElementById('countdown')
     let countdownInSeconds = countdownValue / 1000
-    
+
     countdown.innerText = countdownInSeconds
-    
+
     const startCountingDown = setInterval(() => {
         countdownInSeconds > 1 && (
             countdownInSeconds -= 1,
@@ -37,13 +61,13 @@ export default function renderScreen(screen, game, currentPlayerId, requestAnima
         context.fillStyle = `${player.color}bf`
         context.fillRect(player.x, player.y, 1, 1)
     }
-    
+
     for (const fruitId in game.state.fruits) {
         const fruit = game.state.fruits[fruitId]
         context.fillStyle = 'green'
         context.fillRect(fruit.x, fruit.y, 1, 1)
     }
-    
+
     for (const bombId in game.state.bombs) {
         const bomb = game.state.bombs[bombId]
         context.fillStyle = 'red'
@@ -79,7 +103,7 @@ function renderRanking(game, currentPlayerId) {
             color
         })
     }
-    
+
     playersArray.sort((a, b) => {
         return b.points - a.points
     })
