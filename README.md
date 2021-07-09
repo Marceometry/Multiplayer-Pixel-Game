@@ -26,7 +26,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Este projeto consiste em um jogo simples multiplayer onde os jogadores devem "comer" frutas para ganhar pontos. Esta versão foi baseada na playlist [Meu primeiro jogo multiplayer](https://www.youtube.com/playlist?list=PLMdYygf53DP5SVQQrkKCVWDS0TwYLVitL), do canal do [Felipe Deschamps](https://www.youtube.com/c/FilipeDeschamps) no YouTube.
 
-## 💣 Detalhes do projeto original
+## ✨ Detalhes do projeto original
 
 - Backend com `Node.js` e `Socket.io` para realizar a conexão em tempo real com todos os clientes
 - Boas práticas de arquitetura de software, como os Design Patterns `Observer` e `Factory`
