@@ -40,7 +40,7 @@ export default function setUpOptionsFunctions(socket) {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber
         const fruitIntervalInput = document.getElementById("fruit-interval").valueAsNumber
 
-        let gameIntervalValue = 20000
+        let gameIntervalValue = 30000
         let fruitIntervalValue = 1500
 
         !isNaN(gameIntervalInput) && gameIntervalInput > 0 && (
