@@ -28,16 +28,17 @@
     </header>
 
     <div class="container">
-        <aside id="options-container">
-            <h1>Informações:</h1>
-
+        <aside id="left-container">
             <div class="chronometer-container">
-                <h2>Tempo restante: </h2>
-                <h2 id="chronometer">0</h2>
+                <h1>Tempo restante: </h1>
+                <h1 id="chronometer">0</h1>
             </div>
         </aside>
 
-        <canvas id="screen"></canvas>
+        <div class="screen-container">
+            <div id="countdown-container"><h1 id="countdown">3</h1></div>
+            <canvas id="screen"></canvas>
+        </div>
     
         <aside id="ranking">
             <h1>Ranking - pontos</h1>
@@ -49,7 +50,7 @@
     <script type="module">
         import createGame from './scripts/game.js'
         import createKeyboardListener from './scripts/keyboard-listener.js'
-        import renderScreen, { setUpScreen } from './scripts/render-screen.js'
+        import renderScreen, { setUpScreen, renderCountdown } from './scripts/render-screen.js'
         import { playerOptions } from './scripts/options.js'
 
         const game = createGame()
@@ -75,6 +76,10 @@
             keyboardListener.subscribe(command => {
                 socket.emit(command.type, command)
             })
+        })
+
+        socket.on('start-countdown', command => {
+            renderCountdown(command.countdown)
         })
 
         socket.on('chronometer', command => {

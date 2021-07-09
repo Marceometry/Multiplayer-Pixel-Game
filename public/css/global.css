@@ -19,8 +19,9 @@ body {
 
 button {
     cursor: pointer;
-    padding: 8px 0;
+    padding: 8px;
     transition: all .2s;
+    background: #191919;
 }
 
 button:hover {
@@ -32,13 +33,14 @@ button:active {
 }
 
 input {
-    padding: 4px;
+    padding: 6px;
+    background: #292929;
 }
 
 button, input {
     border-radius: 3px;
     border: none;
-    background: #e1e1e1;
+    color: white;
 }
 
 .container {

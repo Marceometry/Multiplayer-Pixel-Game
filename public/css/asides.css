@@ -1,23 +1,26 @@
 aside {
-    padding: 0 64px;
+    padding: 0 48px;
 }
 
 aside h1 {
     font-size: 32px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 }
 
-#options-container {
+#left-container {
     min-width: 330px;
 }
 
-#options-container h2 {
+.chronometer-container {
+    display: flex;
+    gap: 8px;
+}
+
+.chronometer-container h1 {
     display: inline-block;
-    font-size: 20px;
 }
 
 .options {
-    margin-top: 32px;
     gap: 24px;
     display: flex;
     flex-direction: column;
