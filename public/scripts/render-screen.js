@@ -11,7 +11,7 @@ export default function renderScreen(screen, game, currentPlayerId, requestAnima
 
     for (const playerId in game.state.players) {
         const player = game.state.players[playerId]
-        context.fillStyle = '#cccccc80'
+        context.fillStyle = `${player.color}bf`
         context.fillRect(player.x, player.y, 1, 1)
     }
     
@@ -24,7 +24,7 @@ export default function renderScreen(screen, game, currentPlayerId, requestAnima
     const currentPlayer = game.state.players[currentPlayerId]
 
     currentPlayer && (
-        context.fillStyle = '#F0DB4F',
+        context.fillStyle = currentPlayer.color,
         context.fillRect(currentPlayer.x, currentPlayer.y, 1, 1)
     )
 
@@ -39,14 +39,15 @@ function renderRanking(game, currentPlayerId) {
     const playersArray = []
 
     for (const playerId in game.state.players) {
-        const { x, y, points, username } = game.state.players[playerId]
+        const { x, y, points, username, color } = game.state.players[playerId]
 
         playersArray.push({
             playerId,
             x,
             y,
             points,
-            username
+            username,
+            color
         })
     }
     
@@ -63,8 +64,10 @@ function renderRanking(game, currentPlayerId) {
         const player = topTen[index]
 
         ol.innerHTML += `
-            <li class=${player.playerId === currentPlayerId ? 'current-player' : ''}>
-                ${player.username} ${player.playerId === currentPlayerId ? '(Você)' : ''} - ${player.points} ponto(s)
+            <li style="color: ${player.color}"
+                class=${player.playerId === currentPlayerId ? 'player current-player' : 'player'}
+            >
+                ${player.username} ${player.playerId === currentPlayerId ? '(Você)' : ''} | ${player.points}
             </li>
         `
     }

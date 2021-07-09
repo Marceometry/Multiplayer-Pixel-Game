@@ -1,3 +1,5 @@
+import { colorOptions } from './utils.js'
+
 export default function setUpOptionsFunctions(socket) {
     const changeUsername = document.getElementById("change-username")
     changeUsername.onclick = () => {
@@ -13,6 +15,24 @@ export default function setUpOptionsFunctions(socket) {
             playerId: socket.id,
             username
         })
+    }
+
+    const colorOptionsContainer = document.getElementById('color-options-container')
+    for (let i = 0; i < colorOptions.length; i++) {
+        const color = colorOptions[i]
+        
+        const button = document.createElement('button')
+        colorOptionsContainer.appendChild(button)
+        button.classList.add('color-option')
+        button.style.background = color
+
+        button.onclick = () => {
+            socket.emit('change-player-color', {
+                type: 'change-player-color',
+                playerId: socket.id,
+                color
+            })
+        }
     }
 
     const startButton = document.getElementById("start-button")

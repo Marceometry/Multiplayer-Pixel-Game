@@ -16,9 +16,15 @@
 </head>
 <body>
     <header class="username-container">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" maxlength=20>
-        <button id="change-username">Alterar username</button>
+        <div class="username-container">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" maxlength=20>
+            <button id="change-username">Alterar username</button>
+        </div>
+
+        <div id="color-options-container">
+            <label>Alterar cor:</label>
+        </div>
     </header>
 
     <div class="container">
@@ -51,7 +57,7 @@
         <canvas id="screen"></canvas>
     
         <aside id="ranking">
-            <h1>Ranking</h1>
+            <h1>Ranking - pontos</h1>
     
             <ol></ol>
         </aside>
@@ -95,6 +101,10 @@
 
         socket.on('change-username', command => {
             game.changeUsername(command)
+        })
+
+        socket.on('change-player-color', command => {
+            game.changePlayerColor(command)
         })
 
         socket.on('add-player', command => {

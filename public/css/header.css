@@ -1,14 +1,31 @@
 header {
-    margin-left: 64px;
+    width: 100%;
+    padding: 0 64px;
+    display: flex;
+    justify-content: space-between;
+}
+
+header div {
+    gap: 8px;
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
 header label {
     font-size: 24px;
+    margin-right: 8px;
 }
 
 header button {
     padding: 4px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    transition: all .2s;
+}
+
+.color-option:hover {
+    filter: brightness(.9);
 }

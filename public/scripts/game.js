@@ -58,6 +58,13 @@ export default function createGame() {
 
         notifyAll(command)
     }
+    
+    function changePlayerColor(command) {
+        const { playerId, color } = command
+        state.players[playerId].color = color
+
+        notifyAll(command)
+    }
 
     function addPlayer(command) {
         const { playerId } = command
@@ -70,7 +77,8 @@ export default function createGame() {
             x: playerX,
             y: playerY,
             points,
-            username
+            username,
+            color: '#F0DB4F'
         }
 
         notifyAll({
@@ -190,6 +198,7 @@ export default function createGame() {
         start,
         stop,
         changeUsername,
+        changePlayerColor,
         addPlayer,
         removePlayer,
         removeAllPoints,
