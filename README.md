@@ -16,11 +16,11 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [JavaScript](https://reactjs.org)
-- [Node.js](https://nextjs.org)
-- [Socket.io](https://www.typescriptlang.org)
-- [HTML](https://reactjs.org)
-- [CSS](https://reactjs.org)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Node.js](https://nodejs.org/en/)
+- [Socket.io](https://socket.io/)
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
 ## 💻 Projeto
 
