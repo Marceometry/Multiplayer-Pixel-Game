@@ -37,6 +37,18 @@ export function playerOptions(socket) {
 }
 
 export function adminOptions(socket) {
+    const viewStats = document.getElementById("view-stats")
+    viewStats.onclick = () => {
+        document.querySelectorAll(".left-container")[0].classList.add("hidden")
+        document.querySelectorAll(".left-container")[1].classList.remove("hidden")
+    }
+
+    const viewOptions = document.getElementById("view-options")
+    viewOptions.onclick = () => {
+        document.querySelectorAll(".left-container")[1].classList.add("hidden")
+        document.querySelectorAll(".left-container")[0].classList.remove("hidden")
+    }
+
     const startButton = document.getElementById("start-button")
     startButton.onclick = () => {
         const gameIntervalInput = document.getElementById("game-interval").valueAsNumber

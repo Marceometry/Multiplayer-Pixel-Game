@@ -11,19 +11,33 @@ export function renderGameStats(game, playerId) {
         bombsExplodedInThisGame
     } = game.state
 
+    let totalFruitsConsumedResult = 0
+    let totalBombsExplodedResult = 0
+
+    for (const playerId in players) {
+        const player = players[playerId]
+
+        totalFruitsConsumedResult += player.totalFruitsConsumed
+        totalBombsExplodedResult += player.totalBombsExploded
+    }
+
     const fruitsConsumed = document.getElementById('fruits-consumed')
+    const totalFruitsConsumed = document.getElementById('total-fruits-consumed')
     const fruitsPlayerConsumed = document.getElementById('fruits-player-consumed')
-    const TotalFruitsPlayerConsumed = document.getElementById('total-fruits-consumed')
+    const TotalFruitsPlayerConsumed = document.getElementById('total-fruits-player-consumed')
 
     fruitsConsumed.innerText = fruitsConsumedInThisGame
+    totalFruitsConsumed.innerText = totalFruitsConsumedResult
     fruitsPlayerConsumed.innerText = players[playerId].fruitsConsumedInThisGame
     TotalFruitsPlayerConsumed.innerText = players[playerId].totalFruitsConsumed
 
     const bombsExploded = document.getElementById('bombs-exploded')
+    const totalBombsExploded = document.getElementById('total-bombs-exploded')
     const bombsPlayerExploded = document.getElementById('bombs-player-exploded')
-    const TotalBombsPlayerExploded = document.getElementById('total-bombs-exploded')
+    const TotalBombsPlayerExploded = document.getElementById('total-bombs-player-exploded')
 
     bombsExploded.innerText = bombsExplodedInThisGame
+    totalBombsExploded.innerText = totalBombsExplodedResult
     bombsPlayerExploded.innerText = players[playerId].bombsExplodedInThisGame
     TotalBombsPlayerExploded.innerText = players[playerId].totalBombsExploded
 }

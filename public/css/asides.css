@@ -1,10 +1,17 @@
 aside {
     padding: 0 48px;
+    position: relative;
 }
 
 aside h1 {
     font-size: 32px;
     margin-bottom: 40px;
+}
+
+aside > button {
+    position: absolute;
+    left: 8px;
+    top: 2px;
 }
 
 .left-container {
