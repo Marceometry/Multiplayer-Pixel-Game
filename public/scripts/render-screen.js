@@ -4,6 +4,29 @@ export function setUpScreen(canvas, game) {
     canvas.height = height
 }
 
+export function renderCountdown(countdownValue) {
+    const countdownContainer = document.getElementById("countdown-container")
+    countdownContainer.classList.add("is-opened")
+
+    const countdown = document.getElementById('countdown')
+    let countdownInSeconds = countdownValue / 1000
+    
+    countdown.innerText = countdownInSeconds
+    
+    const startCountingDown = setInterval(() => {
+        countdownInSeconds > 1 && (
+            countdownInSeconds -= 1,
+            countdown.innerText = countdownInSeconds
+        )
+    }, 1000)
+
+    const countdownInterval = setInterval(() => {
+        clearInterval(startCountingDown)
+        clearInterval(countdownInterval)
+        countdownContainer.classList.remove("is-opened")
+    }, countdownValue)
+}
+
 export default function renderScreen(screen, game, currentPlayerId, requestAnimationFrame) {
     const { width, height } = game.state.screen
     const context = screen.getContext('2d')

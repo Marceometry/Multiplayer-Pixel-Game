@@ -19,6 +19,10 @@ export default function createGame() {
     
     function startCountdown(command) {
         notifyAll(command)
+        command.type = 'game-start'
+
+        let totalIntervalValue = command.gameIntervalValue / 1000
+        notifyAll({ type: 'chronometer', totalIntervalValue })
 
         const countdownInterval = setInterval(() => {
             start(command)
@@ -34,6 +38,7 @@ export default function createGame() {
         clearInterval(gameInterval)
         clearInterval(fruitInterval)
         
+        addFruit()
         fruitInterval = setInterval(addFruit, fruitIntervalValue)
         if (bombIntervalValue) {
             bombInterval = setInterval(addBomb, bombIntervalValue)
@@ -43,7 +48,6 @@ export default function createGame() {
             stop()
         }, gameIntervalValue)
 
-        notifyAll({ type: 'chronometer', totalIntervalValue })
         chronometer = setInterval(() => {
             totalIntervalValue --
             if (totalIntervalValue >= 0) {

@@ -79,7 +79,7 @@
 
         socket.on('chronometer', command => {
             const chronometer = document.getElementById('chronometer')
-            chronometer.innerText = `${command.totalIntervalValue}`
+            chronometer.innerText = command.totalIntervalValue
         })
 
         socket.on('change-username', command => {

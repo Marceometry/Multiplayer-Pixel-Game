@@ -38,6 +38,7 @@ input {
 button, input {
     border-radius: 3px;
     border: none;
+    background: #e1e1e1;
 }
 
 .container {

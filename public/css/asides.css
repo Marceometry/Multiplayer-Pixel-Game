@@ -1,15 +1,19 @@
-#ranking, #options-container {
+aside {
     padding: 0 64px;
+}
+
+aside h1 {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+#options-container {
+    min-width: 330px;
 }
 
 #options-container h2 {
     display: inline-block;
     font-size: 20px;
-}
-
-h1 {
-    font-size: 32px;
-    margin-bottom: 32px;
 }
 
 .options {
