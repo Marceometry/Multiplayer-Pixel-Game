@@ -36,11 +36,13 @@ Este projeto consiste em um jogo simples multiplayer onde os jogadores devem "co
 
 - Pontuação dos jogadores de acordo com a quantidade de frutas "comidas"
 - Opção de adicionar "bombas" que diminuem a pontuação dos jogadores caso ocorra uma colisão
+- Cronômetro indicando o tempo que falta para acabar a partida
 - Placar que lista os jogadores com maior pontuação
+- Ao lado esquerdo da tela, informações sobre a quantidade de frutas e bombas que o jogador colidiu
 - Teletransporte para o outro lado da tela quando a borda é ultrapassada
 - Possibilidade de adicionar um username customizado
 - Possibilidade de escolher a cor do jogador
-- Menu com opções de jogo para começar e parar o jogo, definir a velocidade do spawn de frutas, remover todas as frutas, etc.
+- Página de administrador com menu de opções para começar e parar o jogo, definir a velocidade do spawn de frutas, remover todas as frutas, etc.
 
 ## 🚀 Como executar
 
