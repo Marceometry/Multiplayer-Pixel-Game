@@ -18,11 +18,11 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [JavaScript]
-- [Node.js]
-- [Socket.io]
-- [HTML]
-- [CSS]
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [Node.js](https://nodejs.org/en/)
+- [Socket.io](https://socket.io/)
+- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
 ## 🚀 Como executar
 
