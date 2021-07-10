@@ -106,15 +106,7 @@
 
         socket.on('start-countdown', command => {
             renderCountdown(command.countdown)
-
-            for (const playerId in game.state.players) {
-                const player = game.state.players[playerId]
-                
-                player.fruitsConsumedInThisGame = 0
-                player.bombsExplodedInThisGame = 0
-            }
-            game.state.fruitsConsumedInThisGame = 0
-            game.state.bombsExplodedInThisGame = 0
+            game.resetGameStats()
             
             const playerId = socket.id
             renderGameStats(game, playerId)

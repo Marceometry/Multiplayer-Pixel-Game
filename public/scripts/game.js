@@ -18,16 +18,20 @@ export default function createGame() {
     let bombInterval
     let gameInterval
     let chronometer
-    
-    function startCountdown(command) {
+
+    function resetGameStats() {
         for (const playerId in state.players) {
             const player = state.players[playerId]
+            
             player.fruitsConsumedInThisGame = 0
             player.bombsExplodedInThisGame = 0
         }
         state.fruitsConsumedInThisGame = 0
         state.bombsExplodedInThisGame = 0
-        
+    }
+    
+    function startCountdown(command) {
+        resetGameStats()
         notifyAll(command)
         command.type = 'game-start'
 
@@ -281,6 +285,7 @@ export default function createGame() {
         setState,
         subscribe,
         startCountdown,
+        resetGameStats,
         start,
         stop,
         changeUsername,
