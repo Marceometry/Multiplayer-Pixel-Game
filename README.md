@@ -41,7 +41,7 @@ Este projeto consiste em um jogo simples multiplayer onde os jogadores devem "co
 - Ao lado esquerdo da tela, informações sobre a quantidade de frutas e bombas que o jogador colidiu
 - Teletransporte para o outro lado da tela quando a borda é ultrapassada
 - Possibilidade de adicionar um username customizado
-- Possibilidade de escolher a cor do jogador
+- Possibilidade de escolher a cor do personagem
 - Página de administrador com menu de opções para começar e parar o jogo, definir a velocidade do spawn de frutas, remover todas as frutas, etc.
 
 ## 🚀 Como executar
